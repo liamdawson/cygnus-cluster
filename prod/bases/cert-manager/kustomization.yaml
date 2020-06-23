@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./issuer.yaml
+
+commonLabels:
+  app.kubernetes.io/name: cert-manager
+  app.kubernetes.io/instance: cert-manager-prod
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: tls-issuer-cloudflare
+    type: Opaque
+    namespace: cert-manager
+    literals:
+      - apiToken=invalid

@@ -1,0 +1,16 @@
+commonLabels:
+  app.kubernetes.io/name: homer
+  app.kubernetes.io/instance: cygnus-homer-dashboard
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+
+configMapGenerator:
+  - name: config
+    files:
+      - config.yml
+  # TODO: this might be a bit unwieldy to keep in config
+  - name: assets
+    files: []

@@ -1,0 +1,18 @@
+resources:
+  - vendor.yaml
+
+patchesJson6902:
+  - path: remove-service.yaml
+    target:
+      group: ""
+      version: v1
+      kind: Service
+      name: ingress-nginx-controller
+      namespace: ingress-nginx
+  - path: host-daemonset.yaml
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: ingress-nginx-controller
+      namespace: ingress-nginx

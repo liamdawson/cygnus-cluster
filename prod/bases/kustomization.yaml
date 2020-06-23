@@ -1,0 +1,6 @@
+bases:
+  - ./cert-manager
+  - ../../bases
+
+commonAnnotations:
+  com.ldaws.cygnus/env: prod

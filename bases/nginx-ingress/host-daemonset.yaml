@@ -1,0 +1,11 @@
+- op: replace
+  path: /kind
+  value: DaemonSet
+
+- op: replace
+  path: /spec/template/spec/dnsPolicy
+  value: ClusterFirstWithHostNet
+
+- op: add
+  path: /spec/template/spec/hostNetwork
+  value: true
