@@ -1,18 +1,16 @@
-resources:
-  - vendor.yaml
+bases:
+  - ./admission-webhooks
 
-patchesJson6902:
-  - path: remove-service.yaml
-    target:
-      group: ""
-      version: v1
-      kind: Service
-      name: ingress-nginx-controller
-      namespace: ingress-nginx
-  - path: host-daemonset.yaml
-    target:
-      group: apps
-      version: v1
-      kind: Deployment
-      name: ingress-nginx-controller
-      namespace: ingress-nginx
+resources:
+  - ./clusterrole.yaml
+  - ./clusterrolebinding.yaml
+  - ./configmap.yaml
+  - ./controller-daemonset.yaml
+  - ./controller-service.yaml
+  - ./role.yaml
+  - ./rolebinding.yaml
+  - ./service-webhook.yaml
+  - ./serviceaccount.yaml
+
+commonLabels:
+  app.kubernetes.io/name: ingress-nginx

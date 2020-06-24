@@ -1,0 +1,10 @@
+namespace: ingress-nginx
+
+commonLabels:
+  app.kubernetes.io/instance: cluster-ingress-nginx
+
+bases:
+  - ../../../bases/nginx-ingress
+
+patchesStrategicMerge:
+  - controller-service.patch.yaml

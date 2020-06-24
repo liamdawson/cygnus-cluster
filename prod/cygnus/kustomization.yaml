@@ -1,17 +1,11 @@
+resources:
+  - ./namespaces.yaml
+
 bases:
-  - ../bases
+  - ./cert-manager
+  - ./nginx-ingress
+  - ../../bases/dashboard
 
-secretGenerator:
-  - name: tls-issuer-cloudflare
-    behavior: merge
-    type: Opaque
-    namespace: cert-manager
-    env: ./secrets/cert-manager.env
-
-patchesJson6902:
-  - path: secrets/tls-email.yaml
-    target:
-      group: cert-manager.io
-      version: v1alpha2
-      kind: ClusterIssuer
-      name: tls-issuer
+commonAnnotations:
+  com.ldaws.lab/env: prod
+  com.ldaws.lab/cluster: cygnus

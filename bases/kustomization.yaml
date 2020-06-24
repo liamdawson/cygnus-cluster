@@ -1,6 +1,0 @@
-bases:
-  - ./nginx-ingress
-  - ./dashboard
-
-resources:
-  - ./namespaces.yaml
