@@ -1,0 +1,9 @@
+commonLabels:
+  app.kubernetes.io/name: storage
+
+resources:
+  - ./clusterrole.yaml
+  - ./clusterrolebinding.yaml
+  - ./role.yaml
+  - ./rolebinding.yaml
+  - ./serviceaccount.yaml

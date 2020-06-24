@@ -1,0 +1,6 @@
+commonLabels:
+  app.kubernetes.io/name: storage
+
+resources:
+  - ./class.yaml
+  - ./deployment.yaml

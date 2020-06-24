@@ -1,0 +1,8 @@
+commonLabels:
+  app.kubernetes.io/app: cygnus
+  app.kubernetes.io/component: storage
+
+bases:
+  - ../../../bases/nfs-client-provisioner/rbac
+  - ./bulk
+  - ./fast

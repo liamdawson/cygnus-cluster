@@ -1,0 +1,19 @@
+commonLabels:
+  app.kubernetes.io/instance: bulk-storage
+
+namePrefix: bulk-
+namespace: storage
+
+bases:
+  - ../../../../bases/nfs-client-provisioner/provisioner
+
+resources:
+  - ./class.yaml
+
+patchesJson6902:
+  - path: ./deployment.yaml
+    target:
+      group: apps
+      kind: Deployment
+      name: nfs-client-provisioner
+      version: v1

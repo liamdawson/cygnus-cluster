@@ -2,6 +2,7 @@ resources:
   - ./namespaces.yaml
 
 bases:
+  - ./storage
   - ./cert-manager
   - ./nginx-ingress
   - ../../bases/dashboard

@@ -1,0 +1,15 @@
+- op: replace
+  path: /spec/template/spec/containers/0/env
+  value:
+    - name: PROVISIONER_NAME
+      value: cygnus.ldaws.com/fast
+    - name: NFS_SERVER
+      value: 10.10.1.1
+    - name: NFS_PATH
+      value: /var/local/lib/kubedata
+
+- op: replace
+  path: /spec/template/spec/volumes/0/nfs
+  value:
+    server: 10.10.1.1
+    path: /var/local/lib/kubedata

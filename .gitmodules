@@ -4,3 +4,6 @@
 [submodule "vendor/trow"]
 	path = vendor/trow
 	url = https://github.com/ContainerSolutions/trow/
+[submodule "vendor/external-storage"]
+	path = vendor/external-storage
+	url = https://github.com/kubernetes-incubator/external-storage
