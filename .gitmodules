@@ -1,9 +1,0 @@
-[submodule "vendor/cert-manager"]
-	path = vendor/cert-manager
-	url = https://github.com/jetstack/cert-manager
-[submodule "vendor/trow"]
-	path = vendor/trow
-	url = https://github.com/ContainerSolutions/trow/
-[submodule "vendor/external-storage"]
-	path = vendor/external-storage
-	url = https://github.com/kubernetes-incubator/external-storage

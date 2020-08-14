@@ -1,0 +1,9 @@
+commonLabels:
+  com.ldaws.lab/env: Production
+  com.ldaws.lab/cluster: cygnus
+
+commonAnnotations:
+  com.ldaws.lab/cluster-component: content
+
+bases:
+  - ../../bases/podinfo

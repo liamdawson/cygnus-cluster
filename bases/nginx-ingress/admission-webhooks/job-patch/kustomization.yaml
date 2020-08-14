@@ -1,8 +1,0 @@
-resources:
-  - ./clusterrole.yaml
-  - ./clusterrolebinding.yaml
-  - ./job-createSecret.yaml
-  - ./job-patchWebhook.yaml
-  - ./role.yaml
-  - ./rolebinding.yaml
-  - ./serviceaccount.yaml

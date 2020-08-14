@@ -1,5 +1,0 @@
-bases:
-  - ./job-patch
-
-resources:
-  - ./validating-webhook.yaml
