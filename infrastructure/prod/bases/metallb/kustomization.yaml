@@ -1,0 +1,7 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+namespace: metallb-system
+
+resources:
+  - github.com/metallb/metallb//manifests?ref=v0.9.3

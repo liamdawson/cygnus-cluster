@@ -1,0 +1,10 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+namespace: ingress-nginx
+
+resources:
+  - github.com/kubernetes/ingress-nginx//deploy/static/provider/baremetal?ref=bc44b24220169ee4d25d480f1635ce02d34fb76a
+
+patchesStrategicMerge:
+  - service-lb.yaml

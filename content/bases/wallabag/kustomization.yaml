@@ -1,0 +1,12 @@
+resources:
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+
+commonLabels:
+  app.kubernetes.io/part-of: wallabag
+  app.kubernetes.io/version: 2.3.8
+
+images:
+  - name: wallabag/wallabag
+    newTag: 2.3.8

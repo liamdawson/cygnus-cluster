@@ -7,3 +7,4 @@ commonAnnotations:
 
 bases:
   - ../../bases/podinfo
+  - ../../bases/wallabag
