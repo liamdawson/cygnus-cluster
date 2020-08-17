@@ -1,0 +1,7 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: cygnus-state
+provisioner: cluster.ldaws.com/cygnus-state
+parameters:
+  archiveOnDelete: "true"

@@ -1,0 +1,14 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+resources:
+  - deployment.yaml
+  - rbac.yaml
+
+commonLabels:
+  app.kubernetes.io/app: nfs-client-provisioner
+  app.kubernetes.io/version: 3.1.0-k8s1.11
+
+images:
+- name: quay.io/external_storage/nfs-client-provisioner:latest
+  newTag: v3.1.0-k8s1.11

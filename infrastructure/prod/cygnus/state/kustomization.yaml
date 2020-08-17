@@ -1,0 +1,11 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+namePrefix: cygnus-state-
+namespace: cygnus-storage
+
+resources:
+  - ../../bases/nfs-client-provisioner
+
+patchesStrategicMerge:
+  - deployment-patch.yaml
