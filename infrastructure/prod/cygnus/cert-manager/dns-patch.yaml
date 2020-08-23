@@ -1,0 +1,11 @@
+# I use a local DNS resolver to point locally, but that confuses cert-manager, which then sends requests to CloudFlare that fail due to... permissions?
+# https://cert-manager.io/docs/configuration/acme/dns01/#setting-nameservers-for-dns01-self-check
+# suggests this approach
+
+- op: add
+  path: /spec/template/spec/containers/0/args/-
+  value: --dns01-recursive-nameservers-only
+
+- op: add
+  path: /spec/template/spec/containers/0/args/-
+  value: --dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53

@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailhog
+  labels:
+    app.kubernetes.io/name: mailhog
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mailhog
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mailhog
+    spec:
+      containers:
+      - name: mailhog
+        image: mailhog/mailhog
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8025
+          protocol: TCP
+        - name: smtp
+          containerPort: 1025
+          protocol: TCP
+        volumeMounts:
+          - name: maildir
+            mountPath: /var/lib/mailhog/maildir/
+          - name: config
+            mountPath: /etc/mailhog/
+            readOnly: true
+        env:
+          - name: MH_MAILDIR_PATH
+            value: /var/lib/mailhog/maildir
+          - name: MH_STORAGE
+            value: maildir
+          - name: MH_OUTGOING_SMTP
+            value: /etc/mailhog/smtp.json
+          - name: MH_AUTH_FILE
+            value: /etc/mailhog/auth.txt
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
+      volumes:
+        - name: maildir
+          persistentVolumeClaim:
+            claimName: mailhog-maildir
+        - name: config
+          secret:
+            secretName: mailhog-config

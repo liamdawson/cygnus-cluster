@@ -1,0 +1,21 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+namespace: mail
+
+commonLabels:
+  app.kubernetes.io/instance: mail
+
+resources:
+- namespace.yaml
+- ../../../bases/mailhog
+- ingress.yaml
+- service.yaml
+
+secretGenerator:
+  - name: mailhog-config
+    type: opaque
+    behavior: replace
+    files:
+      - secret/smtp.json
+      - secret/auth.txt

@@ -3,17 +3,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: podinfo
+  name: mailhog
+  labels:
+    app.kubernetes.io/name: mailhog
 spec:
   type: ClusterIP
   selector:
-    app: podinfo
+    app.kubernetes.io/name: mailhog
   ports:
     - name: http
-      port: 9898
+      port: 80
       protocol: TCP
       targetPort: http
-    - port: 9999
-      targetPort: grpc
+    - name: smtp
+      port: 25
       protocol: TCP
-      name: grpc
+      targetPort: smtp

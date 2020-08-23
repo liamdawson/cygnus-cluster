@@ -1,0 +1,15 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+resources:
+  - ../../bases/cert-manager
+  - issuer.yaml
+
+patchesJson6902:
+  - path: dns-patch.yaml
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      namespace: cert-manager
+      name: cert-manager

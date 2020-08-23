@@ -6,5 +6,4 @@ commonAnnotations:
   com.ldaws.lab/cluster-component: content
 
 bases:
-  - ../../bases/podinfo
-  - ../../bases/wallabag
+  - ../bases/mail
