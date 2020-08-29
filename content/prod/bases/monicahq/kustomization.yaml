@@ -8,6 +8,12 @@ resources:
 - ../../../bases/monicahq
 - ingress.yaml
 
+configMapGenerator:
+  - name: monica-app-env
+    behavior: merge
+    literals:
+      - "APP_DEBUG=true"
+
 secretGenerator:
   - name: monica-app-secrets
     behavior: replace
