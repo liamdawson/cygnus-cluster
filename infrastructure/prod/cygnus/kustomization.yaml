@@ -9,9 +9,9 @@ commonAnnotations:
   com.ldaws.lab/cluster-component: infrastructure
 
 resources:
-  # - namespaces.yaml
-  # - storageclasses.yaml
-  # - metallb/
-  # - ../bases/ingress-nginx
+  - namespaces.yaml
+  - storageclasses.yaml
+  - metallb/
+  - ../bases/ingress-nginx
   - cert-manager/
-  # - state/
+  - state/

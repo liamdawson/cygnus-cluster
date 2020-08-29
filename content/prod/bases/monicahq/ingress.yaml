@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: monicahq
+  labels:
+    app.kubernetes.io/name: monicahq
+  annotations:
+    cert-manager.io/cluster-issuer: lets-encrypt
+    nginx.ingress.kubernetes.io/proxy-body-size: 1g
+spec:
+  tls:
+    - secretName: monicahq-ingress-tls
+      hosts:
+      - monicahq.ldaws.net
+  rules:
+    - host: monicahq.ldaws.net
+      http:
+        paths:
+          - backend:
+              serviceName: monicahq
+              servicePort: http

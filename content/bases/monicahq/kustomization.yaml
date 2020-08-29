@@ -1,0 +1,49 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - pvc.yaml
+
+commonLabels:
+  app.kubernetes.io/part-of: monicahq
+  app.kubernetes.io/version: 2.19.0
+
+images:
+  - name: docker.io/monicahq/monicahq
+    newTag: v2.19.0-alpine-fpm
+  - name: docker.io/_/nginx
+    newTag: 1.19-alpine
+
+secretGenerator:
+  - name: monica-app-secrets
+    type: opaque
+    literals:
+      - "APP_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+configMapGenerator:
+  - name: monica-nginx-config
+    files:
+      - default.conf.template
+  - name: monica-nginx-env
+    literals:
+      - "NGINX_HOST=monicahq"
+  - name: monica-app-env
+    literals:
+      - "APP_ENV=production"
+      - "APP_DEBUG=false"
+      - "APP_URL=monica"
+      - "LOG_CHANNEL=stderr"
+      - "CHECK_VERSION=true"
+      - "APP_DISABLE_SIGNUP=true"
+      - "APP_TRUSTED_PROXIES=*"
+      - "DEFAULT_MAX_UPLOAD_SIZE=10240"
+      - "DEFAULT_MAX_STORAGE_SIZE=512"
+      - "DEFAULT_FILESYSTEM=public"
+      - "MFA_ENABLED=true"
+      - "DAV_ENABLED=true"
+      - "ALLOW_STATISTICS_THROUGH_PUBLIC_API_ACCESS=false"
+      - "POLICY_COMPLIANT=false"
+      - "ENABLE_GEOLOCATION=false"
+      - "ENABLE_WEATHER=false"

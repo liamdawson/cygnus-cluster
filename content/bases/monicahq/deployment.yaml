@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monicahq
+  labels:
+    app.kubernetes.io/name: monicahq
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: monicahq
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: monicahq
+    spec:
+      containers:
+      - name: nginx
+        image: docker.io/nginx
+        envFrom:
+          - configMapRef:
+              name: monica-nginx-env
+              optional: false
+        volumeMounts:
+        - name: monica-assets
+          mountPath: /var/www/monica
+          readOnly: true
+        - name: monica-nginx-templates
+          mountPath: /etc/nginx/templates
+          readOnly: true
+        ports:
+          - containerPort: 80
+            name: http
+            protocol: TCP
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
+
+      - name: app
+        image: docker.io/monicahq/monicahq
+        envFrom:
+          - configMapRef:
+              name: monica-app-env
+              optional: false
+          - secretRef:
+              name: monica-app-secrets
+              optional: false
+        volumeMounts:
+        - name: monica-assets
+          mountPath: /nginx-share/monica
+        - name: monica-data
+          mountPath: /var/www/monica/storage
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "cp -r /var/www/monica/. /nginx-share/monica"]
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 128Mi
+
+      volumes:
+        - name: monica-nginx-templates
+          configMap:
+            name: monica-nginx-config
+            optional: false
+        - name: monica-assets
+          persistentVolumeClaim:
+            claimName: monicahq-assets
+        - name: monica-data
+          emptyDir: {}

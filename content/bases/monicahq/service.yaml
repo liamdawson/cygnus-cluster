@@ -1,0 +1,17 @@
+# https://github.com/stefanprodan/podinfo/blob/4.0.6/kustomize/service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: monicahq
+  labels:
+    app.kubernetes.io/name: monicahq
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: monicahq
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http

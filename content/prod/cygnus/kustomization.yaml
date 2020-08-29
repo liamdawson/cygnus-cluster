@@ -5,5 +5,7 @@ commonLabels:
 commonAnnotations:
   com.ldaws.lab/cluster-component: content
 
-bases:
+resources:
+  - services.yaml
   - ../bases/mail
+  - ../bases/monicahq

@@ -39,6 +39,8 @@ spec:
             value: /etc/mailhog/smtp.json
           - name: MH_AUTH_FILE
             value: /etc/mailhog/auth.txt
+          - name: MH_HOSTNAME
+            value: ldaws.net
         resources:
           limits:
             cpu: 2000m

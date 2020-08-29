@@ -1,4 +1,5 @@
 build/**/*
 !build/.keep
 **/secret/**
+!**/secret/**.example
 !**/secret/.keep
